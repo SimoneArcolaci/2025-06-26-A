@@ -34,6 +34,12 @@ class Model:
         return nodi, archi
 
     def stampaDettagli(self):
-        
+        largest_cc = list(max(nx.connected_components(self._graph), key=len))
+        sottografo = self._graph.subgraph(largest_cc)
+        archi = sottografo.edges(data=True)
+        top_archi = sorted(archi, key = lambda x: x[2]['weight'], reverse = True)
+        return top_archi[:5]
+
+
 
 

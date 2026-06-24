@@ -25,7 +25,11 @@ class Controller:
         self._view.update_page()
 
     def handlePrintDetails(self, e):
-        self._model.stampaDettagli()
+        top_archi = self._model.stampaDettagli()
+        for arco in top_archi:
+            self._view._txt_result.controls.append(ft.Text(f"Nodo da {arco[0].name} a {arco[1].name} con peso :{arco[2].get('weight')}"))
+        self._view.update_page()
+
 
     def handleCercaDreamChampionship(self, e):
         pass
